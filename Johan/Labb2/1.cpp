@@ -17,54 +17,56 @@ int main()
 
   if (f.is_open())
   {
-    vector<int> temp_list,nums;
+    vector<int> real_numbers,all_numbers;
     string line;
-    
-    map<char,int> roman;
+    int sum_of_all_numbers;
+    map<char,int> roman_numbers;
 
-    roman['I'] = 1;
-    roman['V'] = 5;
-    roman['X'] = 10;
-    roman['L'] = 50;
-    roman['C'] = 100;
-    roman['D'] = 500;
-    roman['M'] = 1000;
+    roman_numbers['I'] = 1;
+    roman_numbers['V'] = 5;
+    roman_numbers['X'] = 10;
+    roman_numbers['L'] = 50;
+    roman_numbers['C'] = 100;
+    roman_numbers['D'] = 500;
+    roman_numbers['M'] = 1000;
 
     while (f.good())
     {
       getline(f,line);
       for (int i = 0; i < line.length(); ++i)
       {
-        temp_list.push_back(roman[line[i]]);
-//        cout << roman[line[i]] << endl;
+        /* This would work but I don't know how to discard a number I've already taken
+        if (roman_numbers[line[i+1]] > roman_numbers[line[i]])
+        {
+          cout << roman_numbers[line[i+1]] - roman_numbers[line[i]] << endl;
+        }
+        else
+        {
+          cout << roman_numbers[line[i]] << endl;
+          }*/
+        real_numbers.push_back(roman_numbers[line[i]]);
       }
     }
-    f.close();
 
-    for (int i = 0; i < temp_list.size(); ++i)
+    f.close();
+    
+    for (int i = 0; i < real_numbers.size(); ++i)
     {
-      if (temp_list[i] > temp_list[i+1])
+      if (real_numbers[i+1] > real_numbers[i])
       {
-        cout << temp_list[i] - temp_list[i-1] << endl;
+        all_numbers.push_back(real_numbers[i+1] - real_numbers[i]);
+        real_numbers.erase(real_numbers.begin());
       }
       else
-      {
-        cout << temp_list[i] << endl;
-      }
+        all_numbers.push_back(real_numbers[i]);
     }
-
-    //for_each(temp_list.begin(), temp_list.end(), print);
-
-/*    for (list<int>::iterator i = temp_list.begin(); i != temp_list.end(); ++i)
+      
+    for (int i = 0; i < all_numbers.size(); ++i)
     {
-      if (*i > temp_list[)
-      {
-        cout << *i << endl;
-      }
-      }*/
+      sum_of_all_numbers += all_numbers[i];
+    }
+    cout << sum_of_all_numbers << endl;
   }
-  
-  
 
   return 0;
 }
