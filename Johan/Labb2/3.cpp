@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <list>
 #include <algorithm>
 using namespace std;
 
@@ -33,8 +34,9 @@ int main()
   roman_numbers['D'] = 500;
   roman_numbers['M'] = 1000;
 
-  vector<string> user_input;
-  vector<char> roman_v;
+//  vector<string> user_input;
+  list<string> user_input;
+  list<char> roman_v;
   vector<int> real_numbers,all_numbers;
   int sum_of_all_numbers;
   string x;
@@ -47,37 +49,23 @@ int main()
       user_input.push_back(x);
   }
   
-  for (int i = 0; i < user_input.size(); ++i)
+  for (list<string>::iterator i = user_input.begin(); i != user_input.end(); ++i)
   {
-    for (int o = 0; o < user_input[i].size(); ++o)
+    for (string::iterator o = (*i).begin(); o < (*i).end(); ++o)
     {
-      int real_roman_number = roman_numbers[user_input[i][o]];
-      int real_roman_number_next = roman_numbers[user_input[i][o+1]];
-      roman_v.push_back(user_input[i][o]);
-
-/*
-  This will return the sum
-      if (real_roman_number_next > real_roman_number)
-      {
-        all_numbers.push_back(real_roman_number_next - real_roman_number);
-        user_input[i].erase(o);
-      }
-      else
-      {
-        all_numbers.push_back(real_roman_number);
-      }
-*/
+      int real_roman_number = roman_numbers[*o];
+      int real_roman_number_next = roman_numbers[*o];
+      roman_v.push_back(*o);
+//      cout << *o << endl;
     }
   }
 
-  sort(roman_v.begin(), roman_v.end(), return_roman);
-  for (int i = 0; i < roman_v.size(); ++i)
+//  sort(roman_v.begin(), roman_v.end(), return_roman);
+  roman_v.sort();
+//  for (int i = 0; i < roman_v.size(); ++i)
+  for (list<char>::iterator i = roman_v.begin(); i != roman_v.end(); ++i)
   {
-    cout << roman_v[i];
-/*
-  Part of the sum
-  sum_of_all_numbers += all_numbers[i];
-*/
+    cout << *i;
   }
   cout << endl;
 
