@@ -3,7 +3,7 @@
 #include <locale>
 #include <string>
 #include <map>
-#include <vector>
+#include <list>
 using namespace std;
 
 int romanToInt(string romanNumber);
@@ -11,7 +11,7 @@ bool isGreater(string i, string j);
 
 int main(int argc, char *argv[]) 
 {
-	vector<string> romanNumerals;
+	list<string> romanNumerals;
 	string appendString;
 	string VALID_INPUT;
 	int romanNumber;
@@ -22,8 +22,9 @@ int main(int argc, char *argv[])
 		romanNumerals.push_back(appendString);
 	} while (appendString != "q");
 
-	sort(romanNumerals.begin(), romanNumerals.end(), isGreater);
-	vector<string>::iterator stringIterator = romanNumerals.begin();
+	romanNumerals.sort(isGreater);
+	romanNumerals.unique();
+	list<string>::iterator stringIterator = romanNumerals.begin();
 
 	for (; stringIterator != romanNumerals.end(); stringIterator++) {
 		if (romanToInt(*stringIterator) != 0) {
