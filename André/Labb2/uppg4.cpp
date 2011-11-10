@@ -9,6 +9,7 @@ class Roman
 {
 	public:
 		Roman(string r);
+		~Roman();
 		Roman(unsigned d);
 		string get_romanValue();
 		unsigned get_decimalValue();
@@ -22,6 +23,9 @@ class Roman
 };
 
 unsigned Roman::count = 0;
+
+Roman::~Roman()
+{ }
 
 Roman::Roman(string r)
 {
