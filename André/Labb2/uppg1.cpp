@@ -45,9 +45,9 @@ int romanToInt(string romanNumber)
 
 	for (int n = 1; n < romanNumber.size(); n++) {
 		// Get the previous value and the current value
-		int previousValue = romanValue.find(romanNumber[n-1])->second;
-		int current = romanValue.find(romanNumber[n])->second;
-		if (previousValue <= current)
+		int previousValue = romanValue[romanNumber[n-1]];
+		int current = romanValue[romanNumber[n]];
+		if (previousValue < current)
 			sumOfRoman -= (previousValue * 2);
 	}
 
