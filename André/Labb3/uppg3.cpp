@@ -21,10 +21,12 @@ int main(int argc, char *argv[])
 	int lastNumber;
 	while (streamFromInput.good()) {
 		streamFromInput >> currentChar;
-		if (isdigit(currentChar)) {
-			lastNumber = atoi(&currentChar);
-			// Adds the last number two times. The fuck?
-			numbersFromString.push_back(lastNumber);
+		if (!streamFromInput.eof()) {
+			if (isdigit(currentChar)) {
+				lastNumber = atoi(&currentChar);
+				// Adds the last number two times. The fuck?
+				numbersFromString.push_back(lastNumber);
+			}
 		}
 	}
 
@@ -32,7 +34,8 @@ int main(int argc, char *argv[])
 	vector<int>::iterator it;
 
 	// Add all numbers to sum
-	for (it = numbersFromString.begin(); it < numbersFromString.end()-1; it++) {
+	for (it = numbersFromString.begin(); it < numbersFromString.end(); it++) {
+		cerr << *it << endl;
 		sumOfString += *it;
 	}
 

@@ -50,8 +50,9 @@ void sortFile(string filename)
 		while (inputFile.good()) {
 			int currentValue;
 			inputFile >> currentValue;
-			// Get duplicates of last input value. Why?
-			valuesFromFile.push_back(currentValue);
+			if (!inputFile.eof()) {
+				valuesFromFile.push_back(currentValue);
+			}
 		}
 	}
 
