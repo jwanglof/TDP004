@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <unistd.h>
+#include <string>
+#include <sstream>
 #include "Roman.cpp"
 using namespace std;
 
@@ -10,46 +11,34 @@ int main(int argc, char *argv[])
 	// Convert them and print them
 	// If input can't be converted, cerr that error
 
-	vector<Roman> numbers;
+	vector<string> convertedSentence;
 
 	string inputFromFile;
 	unsigned input; 
-	unsigned romanSum = 0;
-	unsigned decimalSum = 0;
+	unsigned decimalSum; 
+	unsigned romanSum; 
 
 	while (cin >> inputFromFile) {
 		if (input = atoi(inputFromFile.c_str())) {
-			decimalSum += input;
 			Roman r(input);
-			numbers.push_back(r);
-			// cout << inputFromFile << " -> " << r.get_romanValue() << endl;
+			decimalSum += input;
+			convertedSentence.push_back(inputFromFile + " -> " + r.get_romanValue());
 		}
 		else {
 			Roman r(inputFromFile);
 			romanSum += r.get_decimalValue();
-			numbers.push_back(r);
-			// cout << inputFromFile << " -> " << r.get_decimalValue() << endl;
+			stringstream ss;
+			ss << r.get_decimalValue();
+			string s;
+			ss >> s;
+			convertedSentence.push_back(inputFromFile + " -> " + s);
 		}
 	}
 
-	int c;
+	vector<string>::iterator it;
 
-	while ((c = getopt(argc, argv, "as")) != -1) {
-		switch(c) {
-			case 'a':
-				cout << "yo a!" << endl;
-				break;
-			case 's':
-				cout << "yo s!" << endl;
-				break;
-			case '?':
-				cout << "wtf?" << endl;
-				break;
-			default:
-				cout << "tjosan" << endl;
-				break;
-		}
-	}
+	for (it = convertedSentence.begin(); it < convertedSentence.end(); it++)
+		cout << *it << endl;
 
 	// Add flags for: --sum, --sum-separately
 	// --sum -> Only get the decimal sum from input
