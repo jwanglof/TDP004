@@ -5,9 +5,10 @@
 #include <stdlib.h>
 using namespace std;
 
+int StringToInt(string str);
+
 int main(int argc, char *argv[])
 {
-	//* Ta en sträng, ignorera alla tecken som inte är siffror, summera dessa */
 	vector<int> numbersFromString;
 	string userInput;
 	int sumOfString = 0;
@@ -19,27 +20,39 @@ int main(int argc, char *argv[])
 
 	char currentChar;
 	int lastNumber;
+	string numbers = "";
+
 	while (streamFromInput.good()) {
 		streamFromInput >> currentChar;
 		if (!streamFromInput.eof()) {
-			if (isdigit(currentChar)) {
-				lastNumber = atoi(&currentChar);
-				// Adds the last number two times. The fuck?
-				numbersFromString.push_back(lastNumber);
+			if (isdigit(currentChar))
+				numbers += currentChar;
+			else {
+				numbersFromString.push_back(StringToInt(numbers));
+				numbers = "";
 			}
 		}
 	}
+
+	// if string isn't empty
+	if (!numbers.empty())
+		numbersFromString.push_back(StringToInt(numbers));
 
 	// Create iterator for numbersFromString
 	vector<int>::iterator it;
 
 	// Add all numbers to sum
 	for (it = numbersFromString.begin(); it < numbersFromString.end(); it++) {
-		cerr << *it << endl;
 		sumOfString += *it;
 	}
 
 	cout << "Summan av alla siffror i den strängen är: " << sumOfString << endl;
 
 	return 0;
+}
+
+int StringToInt (string str)
+{
+	int returnValue;
+	return atoi(str.c_str());
 }
