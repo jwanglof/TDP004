@@ -1,16 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <sstream>
 #include "Roman.cpp"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-	// Read decimal- and Romannumbers from a file
-	// Convert them and print them
-	// If input can't be converted, cerr that error
-
 	vector<string> convertedSentence;
 
 	string inputFromFile;
@@ -35,14 +30,21 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	if (argc > 1) {
+		string choice = argv[1];
+		if (choice == "--sum")
+			cout << "Summan är: " << (decimalSum + romanSum) << endl;
+		else if (choice == "--sum-separately") {
+			cout << "Summan av de romerska talen är: " << romanSum << endl;
+			cout << "Summan av de decimaliska talen är: " << decimalSum << endl;
+		}
+	}
+	else {
 	vector<string>::iterator it;
 
 	for (it = convertedSentence.begin(); it < convertedSentence.end(); it++)
 		cout << *it << endl;
-
-	// Add flags for: --sum, --sum-separately
-	// --sum -> Only get the decimal sum from input
-	// --sum-separately -> sum of all decimal, and sum of all roman
+	}
 
 	return 0;
 }
