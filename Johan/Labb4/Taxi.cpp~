@@ -1,0 +1,11 @@
+#include "Taxi.h"
+
+Taxi::Taxi(const std::string& reg_number)
+{ }
+
+bool Taxi::has_customers()
+{ }
+
+void Taxi::set_has_customers(const bool flag)
+{ }
+

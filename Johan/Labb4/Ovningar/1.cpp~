@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int number;
+  int *intPointer;
+
+  intPointer = &number;
+
+  intPointer = 33;
+
+  cout << number << endl;
+
+  return 0;
+}
