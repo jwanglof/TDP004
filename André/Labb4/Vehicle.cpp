@@ -6,12 +6,10 @@ Vehicle::Vehicle(const std::string& reg_number,
 				const int number_of_doors) : 
 					vehicle_reg_number(reg_number), 
 					vehicle_color(color),
-					vehicle_number_of_doors(number_of_doors) {}
+					vehicle_number_of_doors(number_of_doors) { number_of_objects++; }
 
 Vehicle::~Vehicle()
-{
-
-}
+{ number_of_objects--; }
 
 void Vehicle::set_color(const std::string& color)
 {
@@ -40,31 +38,29 @@ std::string Vehicle::get_class_name() const
 
 
 void Vehicle::print(std::ostream& os) const
+{ }
+
+std::ostream& operator<<(std::ostream& os, const Vehicle& rhs)
 {
-	
+	os << rhs.get_class_name();
+	return os;
 }
 
-/*
-static int Vehicle::get_number_of_objects()
+int Vehicle::number_of_objects = 0;
+
+int Vehicle::get_number_of_objects()
 {
 	return number_of_objects;
 }
-*/
-
-
-
-/*
-virtual void print(std::ostream& os) const;
-
-static int get_number_of_objects();
-
-friend std::ostream& operator<<(
-	std::ostream& os,
-	const Vehicle& rhs);
-*/
 
 int main()
 {
-	Vehicle car("SGH-800", "Green", 4);
+	Vehicle *car1 = new Vehicle("SGH-800", "Green", 4);
+	Vehicle car3("SGH-800", "Red", 2);
+	delete car1;
+
+	// std::cout << car1 << std::endl;
+	std::cout << car3.get_number_of_objects() << std::endl;
+
 	return 0;
 }
