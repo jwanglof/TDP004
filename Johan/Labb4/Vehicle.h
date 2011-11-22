@@ -22,7 +22,6 @@ public:
   virtual void print(std::ostream& os) const;
 
   static int get_number_of_objects();
-//  static int number_of_objects;
 
   friend std::ostream& operator<<(
     std::ostream& os,
@@ -32,6 +31,7 @@ private:
   const std::string vehicle_reg_number;
   std::string vehicle_color;
   const int vehicle_number_of_doors;
+  static int number_of_objects;
 };
 
 #endif /* #ifndef VEHICLE_H_ */
