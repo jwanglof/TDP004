@@ -32,22 +32,23 @@ void Car_Park::park(Vehicle *park_this_car)
 
 void Car_Park::unpark(std::string reg_number)
 {
-	std::cout << " left the carpark." << std::endl;
+	std::list<Vehicle *>::iterator parked_iterator = parked.begin();
+
+	for (; parked_iterator != parked.end(); parked_iterator++)
+		if ((*parked_iterator)->get_reg_number() == reg_number) {
+			parked_iterator = parked.erase(parked_iterator);
+			std::cout << reg_number << " left the carpark." << std::endl;
+		}
 }
 
 void Car_Park::print(std::ostream& os) const
 { 
 	os << "The following vehicles are in the carpark: " << std::endl;
 	
-	std::list<Vehicle *>::iterator it;
+	std::list<Vehicle *>::const_iterator parked_iterator = parked.begin();
 
-}
-
-Car_Park& Car_Park::operator= (const Car_Park &cSource)
-{
-	// do the copy
-	parked = cSource.parked;
-
-	// return the existing object
-	return *this;
+	for (; parked_iterator != parked.end(); parked_iterator++) {
+		(*parked_iterator)->print(os);
+		os << std::endl;
+	}
 }
