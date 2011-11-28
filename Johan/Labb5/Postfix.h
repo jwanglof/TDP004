@@ -7,12 +7,12 @@
 class Postfix
 {
 private:
+public:
   Postfix();
   ~Postfix();
-public:
+
   std::deque<std::string> infix_to_postfix(std::string infixExpr);
   double evaluate(std::deque<std::string>);
-  std::string bla(std::string asd);
 };
 
 #endif /* ifndef POSTFIX_H_ */
