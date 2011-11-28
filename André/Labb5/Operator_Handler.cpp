@@ -2,17 +2,32 @@
 
 bool Operator_Handler::is_of_type(const std::string &token)
 {
-	std::cout << token << std::endl;
+	if (token.length() > 1)
+		return false;
 
-	return true;
+	char operators[] = {'+', '-', '/', '*'};
+
+	for (int i = 0; i < token.length(); i++) {
+		for (int k = 0; k < 4; k++) {
+			if (token[i] == operators[k])
+				return true;
+		}
+	}
+
+	return false;
 }
 
-int main()
+// Equal or greater -> True
+bool Operator_Handler::equal_operators(std::string first, std::string second)
 {
-	Operator_Handler o;
-	std::string tjosan = "+";
-	
-	o.is_of_type(tjosan);
+	std::map<std::string, int> operator_value;
+	operator_value["+"] = 1;
+	operator_value["-"] = 1;
+	operator_value["*"] = 2;
+	operator_value["/"] = 2;
 
-	return 0;
+	if (operator_value[first] >= operator_value[second])
+		return true;
+	else
+		return false;
 }
