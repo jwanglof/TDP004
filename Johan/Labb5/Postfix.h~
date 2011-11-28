@@ -1,0 +1,7 @@
+class Postfix
+{
+private:
+  Postfix();
+  ~Postfix();
+public:
+}

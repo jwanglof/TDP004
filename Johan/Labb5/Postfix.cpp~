@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+
+#include "Postfix.h"
+
+Postfix::Postfix()
+{ }
+
+Postfix::~Postfix()
+{ }
+
+std::deque<std::string> Postfix::infix_to_postfix(std::string)
+{ }
+
+double Postfix::evaluate(std::deque<std::string>)
+{ }
