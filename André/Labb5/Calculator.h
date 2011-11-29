@@ -1,16 +1,14 @@
 #include <iostream>
 #include <vector>
 
+#include "Postfix.h"
+
 class Calculator
 {
 	private:
-		vector<std::string> expressions;
+		std::vector<std::string> expressions;
 	public:
-		Calculator();
-		~Calculator();
 		void read_and_evaluate_expressions();
-		void read_expressions();
-		void evaluate_expressions();
 };
 
 /*

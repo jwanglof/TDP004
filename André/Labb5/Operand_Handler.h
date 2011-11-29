@@ -1,6 +1,7 @@
 #include "Token_Handler.h"
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 class Operand_Handler : public Token_Handler
 {

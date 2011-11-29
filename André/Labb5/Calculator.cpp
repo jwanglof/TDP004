@@ -1,35 +1,32 @@
 #include "Calculator.h"
 
-Calculator::Calculator()
-{ 
-	// read_and_evaluate_expressions();
-}
-
-Calculator::~Calculator()
-{ 
-}
-
-void Calculator::read_expressions()
+void Calculator::read_and_evaluate_expressions()
 {
-	string inputExpression = "";
+	std::string currentInfix;
+	
+	while (getline(std::cin, currentInfix)) {
+			expressions.push_back(currentInfix);
+	}
 
-	while (cin >> inputExpression) {
-		if (inputExpression != NULL) {
-			expressions.push_back(inputExpression);
+	std::vector<std::string>::iterator it;
+	for (it = expressions.begin(); it < expressions.end(); it++) {
+		Postfix p;
+		try {
+			std::cout << p.evaluate(p.infix_to_postfix(*it)) << std::endl;
 		}
+		catch (const std::runtime_error &e) {
+			std::cerr << "Caught exception for: " << *it << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
+
+		std::cout << std::endl;
 	}
 }
 
-void Calculator::evaluate_expressions()
+int main()
 {
-	vector<string>::iterator it;
+	Calculator c;
+	c.read_and_evaluate_expressions();
 
-	for (it = expressions.begin(); it < expressions.end(); it++)
-		std::cout << it << std::endl;
-}
-
-void Calculator::read_and_evaluate_expressions()
-{
-	read_expressions();
-	evaluate_expressions();
+	return 0;
 }

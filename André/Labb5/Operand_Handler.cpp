@@ -2,12 +2,10 @@
 
 bool Operand_Handler::is_of_type(const std::string &token)
 {
-	std::stringstream ss;
-	ss << token.c_str();
-	double value;
+	for (int i = 0; i < token.length(); i++) {
+		if (!isdigit(token[i]))
+			return false;
+	}
 
-	if (ss >> value)
-		return true;
-
-	return false;
+	return true;
 }
