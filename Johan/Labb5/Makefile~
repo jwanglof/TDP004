@@ -1,0 +1,11 @@
+labb5 : Token_Handler.cpp Operator_Handler.o Operand_Handler.o
+	g++ -o labb5 Token_Handler.cpp *.o
+
+Operand_Handler.o : Operand_Handler.cpp
+	g++ -c Operand_Handler.cpp
+
+Operator_Handler.o : Operator_Handler.cpp
+	g++ -c Operator_Handler.cpp
+
+clean :
+	rm labb5 *.o
