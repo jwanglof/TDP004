@@ -12,7 +12,11 @@ void Calculator::read_and_evaluate_expressions()
 	for (it = expressions.begin(); it < expressions.end(); it++) {
 		Postfix p;
 		try {
-			std::cout << p.evaluate(p.infix_to_postfix(*it)) << std::endl;
+			std::deque<std::string> postfix_expression;
+			postfix_expression = p.infix_to_postfix(*it);
+			std::cout << "Infix expression: " << *it << std::endl;
+			std::cout << "Postfix expression: " << create_postfix_string(postfix_expression) << std::endl;
+			std::cout << "Evaluates to: " << p.evaluate(postfix_expression) << std::endl;
 		}
 		catch (const std::runtime_error &e) {
 			std::cerr << "Caught exception for: " << *it << std::endl;
@@ -21,6 +25,17 @@ void Calculator::read_and_evaluate_expressions()
 
 		std::cout << std::endl;
 	}
+}
+
+std::string Calculator::create_postfix_string(std::deque<std::string> postfix_deque)
+{
+	std::deque<std::string>::iterator it;
+	std::string return_string;
+
+	for (it = postfix_deque.begin(); it < postfix_deque.end(); it++)
+		return_string += *it + " ";
+
+	return return_string;
 }
 
 int main()
