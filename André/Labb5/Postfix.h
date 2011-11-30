@@ -1,3 +1,6 @@
+#ifndef POSTFIX_H_
+#define POSTFIX_H_
+
 #include <deque>
 #include <iostream>
 #include <stack>
@@ -17,3 +20,5 @@ class Postfix
 		std::deque<std::string> infix_to_postfix(const std::string &incoming_string);
 		double evaluate(std::deque<std::string>);
 };
+
+#endif

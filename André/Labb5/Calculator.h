@@ -1,3 +1,6 @@
+#ifndef CALCULATOR_H_
+#define CALCULATOR_H_
+
 #include <iostream>
 #include <vector>
 
@@ -11,6 +14,8 @@ class Calculator
 	public:
 		void read_and_evaluate_expressions();
 };
+
+#endif
 
 /*
 Denna klass ska instantieras av main() som sedan ska anropa dess publika medlemsfunktion

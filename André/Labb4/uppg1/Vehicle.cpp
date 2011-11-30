@@ -45,6 +45,10 @@ std::string Vehicle::get_class_name() const
 
 void Vehicle::print(std::ostream& os) const
 { 
+	os << get_class_name() << std::endl;
+	os << "Registration number: " << get_reg_number() << std::endl;
+	os << "Number of doors: " << get_number_of_doors() << std::endl;
+	os << "Color: " << get_color() << std::endl;
 }
 
 int Vehicle::number_of_objects = 0;
@@ -56,7 +60,7 @@ int Vehicle::get_number_of_objects()
 
 std::ostream& operator<<(std::ostream& os, const Vehicle& rhs)
 {
-	os << rhs.get_class_name();
+	rhs.print(os);
 	return os;
 }
 

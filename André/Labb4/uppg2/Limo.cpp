@@ -20,6 +20,11 @@ void Limo::print(std::ostream& os) const
 	os << "Registration number: " << Vehicle::get_reg_number() << std::endl;
 	os << "Number of doors: " << Vehicle::get_number_of_doors() << std::endl;
 	os << "Color: " << Vehicle::get_color() << std::endl;
+
+	if (customers)
+		os << "Has customers" << std::endl;
+	else
+		os << "Has no customers" << std::endl;
 }
 
 /*

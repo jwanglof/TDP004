@@ -18,9 +18,9 @@ class Taxi: public Vehicle {
 
 		// Virtual in base class (vehicle)
 		void print(std::ostream& os) const;
-/*
+
 		friend std::ostream& operator<<( std::ostream& os,
-										const Taxi& rhs); */
+										const Taxi& rhs);
 	private:
 		bool customers;
 };

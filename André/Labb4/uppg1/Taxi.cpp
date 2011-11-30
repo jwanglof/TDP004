@@ -3,9 +3,9 @@
 #include "Taxi.h"
 #include "Vehicle.h"
 
-Taxi::Taxi(const std::string& reg_number) : Vehicle(reg_number, "Yello", 4)
+Taxi::Taxi(const std::string& reg_number) : Vehicle(reg_number, "Yellow", 4)
 {
-	customers = false;
+	set_has_customers(false);
 }
 
 bool Taxi::has_customers() const
@@ -24,8 +24,24 @@ std::string Taxi::get_class_name() const
 }
 
 void Taxi::print(std::ostream& os) const
-{ }
+{ 
+	os << get_class_name() << std::endl;
+	os << "Registration number: " << Vehicle::get_reg_number() << std::endl;
+	os << "Number of doors: " << Vehicle::get_number_of_doors() << std::endl;
+	os << "Color: " << Vehicle::get_color() << std::endl;
 
+	if (customers)
+		os << "Has customers" << std::endl;
+	else
+		os << "Has no customers" << std::endl;
+}
+
+std::ostream& operator<<( std::ostream& os,
+							const Taxi& rhs)
+{
+	rhs.print(os);
+	return os;
+}
 
 /*
 
