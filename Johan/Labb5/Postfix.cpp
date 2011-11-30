@@ -10,7 +10,7 @@ std::deque<std::string> Postfix::infix_to_postfix(const std::string &infixExpr)
 {
   std::deque<std::string> operatorStack;
   std::deque<std::string> outputStack;
-  std::string numbers;
+  std::string currentString;
   
 /*  if (infixExpr.size() == 1)
     outputStack.push_back(infixExpr);
@@ -24,34 +24,32 @@ std::deque<std::string> Postfix::infix_to_postfix(const std::string &infixExpr)
 
   std::stringstream ss(infixExpr);
 
-  while (ss >> numbers)
+  while (ss >> currentString)
   {
-    if (operatorClass.is_of_type(numbers))
+    if (operandClass.is_of_type(currentString))
     {
-      std::string popValue;
-      if (operatorStack.size() == 0)
+      outputStack.push_back(currentString);
+    }
+    else if (operatorClass.is_of_type(currentString))
+    {
+      if (operatorStack > 0)
       {
-        operatorStack.push_back(numbers);
+        if (operatorClass.checkPriority(operatorStack[0], currentString))
+        {
+          outputStack.push_back(operatorStack[0]);
+          operatorStack.pop_back();
+          operatorStack.push_back(currentString);
+        }
       }
       else
-      {
-        if (operatorClass.checkPriority(operatorStack[0], numbers))
-        {
-          popValue = operatorStack[0];
-          operatorStack.pop_front();
-          operatorStack.push_back(numbers);
-          operatorStack.push_back(popValue);
-//        operatorStack.insert(0, numbers);
-        }
-//        std::cout << operatorStack[0] << " " << numbers << std::endl;
-      }
+        operatorStack.push_back(currentString);
     }
 
     ++i;
   }
 
-  for (int i = 0; i < operatorStack.size(); ++i)
-    std::cout << operatorStack[i] << std::endl;
+/*  for (int i = 0; i < operatorStack.size(); ++i)
+    std::cout << operatorStack[i] << std::endl;*/
 }
 
 double Postfix::evaluate(std::deque<std::string>)
