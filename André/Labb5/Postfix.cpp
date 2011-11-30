@@ -19,6 +19,8 @@ std::deque<std::string> Postfix::infix_to_postfix(const std::string &incoming_st
 
 		// Is operand
 		if (operand_handler.is_of_type(currentString)) {
+			if (!last_was_operator)
+				throw std::runtime_error("There must be an operator between two operands!");
 			postfix.push_back(currentString);
 			last_was_operator = false;
 		}
@@ -29,16 +31,10 @@ std::deque<std::string> Postfix::infix_to_postfix(const std::string &incoming_st
 				throw std::runtime_error("The must be an operand before each operator!");
 
 			// Check if stack is empty
-			if (operatorStack.size() > 0) {
-				if (operator_handler.equal_operators(operatorStack.top(), currentString)) {
+				while (operatorStack.size() > 0 && operator_handler.equal_operators(operatorStack.top(), currentString)) {
 					postfix.push_back(operatorStack.top());
 					operatorStack.pop();
-					operatorStack.push(currentString);
 				}
-				else			
-					operatorStack.push(currentString);
-			}
-			else
 				operatorStack.push(currentString);
 
 			last_was_operator = true;

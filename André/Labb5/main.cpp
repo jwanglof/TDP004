@@ -1,6 +1,9 @@
 #include "Calculator.h"
 
-int main (int argc, char *argv[])
+int main()
 {
+	Calculator c;
+	c.read_and_evaluate_expressions();
+
 	return 0;
 }

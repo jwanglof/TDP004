@@ -23,11 +23,8 @@ bool Operator_Handler::equal_operators(std::string first, std::string second)
 	std::map<std::string, int> operator_value;
 	operator_value["+"] = 1;
 	operator_value["-"] = 1;
-	operator_value["*"] = 2;
 	operator_value["/"] = 2;
+	operator_value["*"] = 2;
 
-	if (operator_value[first] >= operator_value[second])
-		return true;
-	else
-		return false;
+	return (operator_value[first] >= operator_value[second]);
 }

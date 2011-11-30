@@ -7,6 +7,7 @@ class Calculator
 {
 	private:
 		std::vector<std::string> expressions;
+		std::string create_postfix_string(std::deque<std::string>);
 	public:
 		void read_and_evaluate_expressions();
 };

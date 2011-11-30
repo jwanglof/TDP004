@@ -38,10 +38,3 @@ std::string Calculator::create_postfix_string(std::deque<std::string> postfix_de
 	return return_string;
 }
 
-int main()
-{
-	Calculator c;
-	c.read_and_evaluate_expressions();
-
-	return 0;
-}
